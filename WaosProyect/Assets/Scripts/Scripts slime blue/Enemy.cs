@@ -7,19 +7,23 @@ public class Enemy : MonoBehaviour
 {
     // Lista de puntos que seguira el enemigo
     public List<Transform> waypoints = new List<Transform>();
+    
     // Primer movimiento hacia el un punto, P1
     private int targetIndex = 1;
+    
     // Variable que determina la vel.
     public float movementSpeed = 4;
+
+    //Var de la velocidad que rota el eje al doblar las "esquinas"
+    public float rotationSpeed = 6;
     void Start()
     {
         
     }
-
-
     void Update()
     {
         Movement();
+        LookAt();
     }
     private void Movement()
     {
@@ -37,6 +41,17 @@ public class Enemy : MonoBehaviour
             }
             targetIndex++; //Cambio de dirección
         }
-    }
+    } //Movimiento del enemigo
+    private void LookAt()
+    {
+        //Detectara la direccion donde esta mirando
+        var dir = waypoints[targetIndex].position - transform.position;
+        
+        //Se hara una rotacion segun la direccion
+        var rootTarget = Quaternion.LookRotation(dir);
+        
+        //Se hara una rotacion mas suavizada segun donde cambie la direccion.
+        transform.rotation = Quaternion.Slerp(transform.rotation, rootTarget, rotationSpeed * Time.deltaTime);
+    } //Cambio de direccion del enemigo
 }
        

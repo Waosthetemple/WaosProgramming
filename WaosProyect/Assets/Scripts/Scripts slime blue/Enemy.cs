@@ -105,7 +105,6 @@ public class Enemy : MonoBehaviour
         currentLife = 0; //Si la vida es 0, se muere, al igual que la barra de vida
         fillLifeImage.fillAmount = 0;
         movementSpeed = 0;
-        Destroy(fillLifeImage);
         StartCoroutine(OnDeadEffect());
     } //Evento donde se muere el enemigo
 

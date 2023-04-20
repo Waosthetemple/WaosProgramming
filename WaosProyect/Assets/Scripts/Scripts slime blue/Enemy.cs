@@ -3,7 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.UIElements;
+using Image = UnityEngine.UI.Image;
 
 public class Enemy : MonoBehaviour
 {
@@ -30,11 +31,22 @@ public class Enemy : MonoBehaviour
     {
         canvasRoot = fillLifeImage.transform.parent.parent;
         initLifeRotation = canvasRoot.rotation;
+        GetWaypoints();
     }
 
     private void Start()
     {
         currentLife = MaxLife; //Se empieza con la vida max
+    }
+
+    private void GetWaypoints() //Lista de waypoints para usar prefab sin que se reseteen.
+    {
+        waypoints.Clear(); //Limpia la lista de wayP.
+        var rootWaypoints = GameObject.Find("WaypointsContainer").transform; //Encuentra el GO de los waypoints.
+        for (int i = 0; i < rootWaypoints.childCount; i++) //con una variable, determinamos la cantidad de hijos y su suma
+        {
+            waypoints.Add(rootWaypoints.GetChild(i)); //La suma de los waypoints con "i".
+        }
     }
     void Update()
     {

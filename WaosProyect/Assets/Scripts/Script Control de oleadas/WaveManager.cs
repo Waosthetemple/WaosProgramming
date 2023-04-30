@@ -28,9 +28,9 @@ public class WaveManager : MonoBehaviour
     {
         if (isWaitingForNextWave && !wavesFinish) //Comprueba si ya termino la oleada actual y empieza la siguiente
         {
-            waves[currentWave].counterToNextWave += 1 * Time.deltaTime;
+            waves[currentWave].counterToNextWave -= 1 * Time.deltaTime;
             counterText.text = waves[currentWave].counterToNextWave.ToString("00");
-            if (waves[currentWave].counterToNextWave >= waves[currentWave].timeForNextWave)
+            if (waves[currentWave].counterToNextWave <= 0)
             {
                 Debug.Log("Set Next Wave");
             }
@@ -50,6 +50,7 @@ public class WaveManager : MonoBehaviour
             if (wavesFinish)
                 yield break; //Return de baja calidad
             isWaitingForNextWave = false;
+            waves[currentWave].counterToNextWave = waves[currentWave].timeForNextWave;
             for (int i = 0; i < waves[currentWave].enemys.Count ; i++) //Creara un enemigo y esperara el tiempo de creacion para crear el prox enemigo
             {
                 var enemyGo = Instantiate(waves[currentWave].enemys[i], initPosition.position, initPosition.rotation);

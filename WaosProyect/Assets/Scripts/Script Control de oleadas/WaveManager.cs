@@ -18,6 +18,11 @@ public class WaveManager : MonoBehaviour
     {
         StartCoroutine(ProcesWave());
     }
+    private void Update()
+    {
+        CheckCounterAndShowButton(); //Boton para la prox oleada
+        checkCounterForNextWave(); //Comprueba si termino el contador para empezar la siguiente oleada
+    }
 
     private void checkCounterForNextWave() //Comprobar que iniciara la prox oleada
     {
@@ -30,6 +35,14 @@ public class WaveManager : MonoBehaviour
                 Debug.Log("Set Next Wave");
             }
         }
+    }
+
+    public void ChangeWave() //Cambia de oleada a la siguiente
+    {
+        if (wavesFinish)
+            return;
+        currentWave++;
+        StartCoroutine(ProcesWave());
     }
 
     private IEnumerator ProcesWave() //Procesa la siguiente oleada
@@ -49,12 +62,7 @@ public class WaveManager : MonoBehaviour
                 wavesFinish = true; //terminamos con todas las oleadas
             }
         }
-    private void Update()
-        {
-            CheckCounterAndShowButton(); //Boton para la prox oleada
-        }
-        
-        private void CheckCounterAndShowButton() //Comprobarta el contador y al activar el boton de la proxima oleada
+    private void CheckCounterAndShowButton() //Comprobarta el contador y al activar el boton de la proxima oleada
         {
             if (wavesFinish)
             {

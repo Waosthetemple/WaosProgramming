@@ -360,6 +360,8 @@
 -analyzer:"C:/Program Files/Unity/Hub/Editor/2022.2.13f1/Editor/Data/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll"
 "Assets/Scripts/Script Control de oleadas/WaveManager.cs"
 "Assets/Scripts/Scripts slime blue/Enemy.cs"
+"Assets/Scripts/UI/CircleTowers/Node.cs"
+"Assets/Scripts/UI/PanelTowers/TowerRequestManager.cs"
 "Assets/TextMesh Pro/Examples & Extras/Scripts/Benchmark01.cs"
 "Assets/TextMesh Pro/Examples & Extras/Scripts/Benchmark01_UGUI.cs"
 "Assets/TextMesh Pro/Examples & Extras/Scripts/Benchmark02.cs"

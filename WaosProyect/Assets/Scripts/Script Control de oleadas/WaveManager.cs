@@ -16,7 +16,7 @@ public class WaveManager : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(ProcesWave());
+        StartCoroutine(ProcesWave()); //Empieza el evento de una oleada
     }
     private void Update()
     {
@@ -28,10 +28,11 @@ public class WaveManager : MonoBehaviour
     {
         if (isWaitingForNextWave && !wavesFinish) //Comprueba si ya termino la oleada actual y empieza la siguiente
         {
-            waves[currentWave].counterToNextWave -= 1 * Time.deltaTime;
-            counterText.text = waves[currentWave].counterToNextWave.ToString("00");
-            if (waves[currentWave].counterToNextWave <= 0)
+            waves[currentWave].counterToNextWave -= 1 * Time.deltaTime; //Contador
+            counterText.text = waves[currentWave].counterToNextWave.ToString("00"); //Interactua con el texto
+            if (waves[currentWave].counterToNextWave <= 0) //Llega a 0 activa el evento
             {
+                ChangeWave(); //Cambia a la siguiente oleada
                 Debug.Log("Set Next Wave");
             }
         }
